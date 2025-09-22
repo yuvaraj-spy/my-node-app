@@ -6,7 +6,7 @@ on:
       - master
 
 env:
-  IMAGE_NAME: yuvaraj9/my-node-app  # Replace with your Docker Hub repo
+  IMAGE_NAME: yuvaraj9/my-node-app  # Replace with your Docker Hub repository name
 
 jobs:
   build-and-push:
@@ -31,18 +31,20 @@ jobs:
       - name: Run tests
         run: npm test
 
-      # 5️⃣ Debug: Check if secrets are passed
-      - name: Debug secrets
+      # 5️⃣ Debug: Verify secrets are passed
+      - name: Debug Docker Hub secrets
         run: |
           if [ -z "$DOCKERHUB_USERNAME" ]; then
             echo "❌ DOCKERHUB_USERNAME is empty"
             exit 1
           fi
+
           if [ -z "$DOCKERHUB_TOKEN" ]; then
             echo "❌ DOCKERHUB_TOKEN is empty"
             exit 1
           fi
-          echo "✅ Secrets are present"
+
+          echo "✅ Docker Hub secrets are present"
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -62,6 +64,6 @@ jobs:
       - name: Build Docker image
         run: docker build -t ${{ env.IMAGE_NAME }}:latest .
 
-      # 9️⃣ Push Docker image
+      # 9️⃣ Push Docker image to Docker Hub
       - name: Push Docker image
         run: docker push ${{ env.IMAGE_NAME }}:latest
