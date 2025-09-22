@@ -55,8 +55,8 @@ git commit -m "Add some feature"
 
 Push to the branch:
 
-git push origin feature-name
+  git push origin feature-name
 
 
-Open a Pull Request.
+  Open a Pull Request.
 
