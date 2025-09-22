@@ -6,7 +6,7 @@ on:
       - master
 
 env:
-  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}yuvaraj9/my-node-app1
+  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}yuvaraj9/my-node-app
 
 jobs:
   build-and-push:
